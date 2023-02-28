@@ -1,6 +1,6 @@
 # myfinance-web-netcore
 MyFinance - Projeto do Curso de Pós-Graduação em Engenharia de Software da PUC-MG
 
-###Diagrama banco de dados 
+###DER - Diagrama e Entidades e Relacionamento
 
-<img src='./diagrama_banco_de_dados.png'>
+<img src='./DER.png'>
