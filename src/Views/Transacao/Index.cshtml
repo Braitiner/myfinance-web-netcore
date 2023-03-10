@@ -1,0 +1,35 @@
+@{
+    ViewData["Title"] = "Transaçãoes Financeiras";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<button type="button" class="btn btn-outline-success btn-lg" onclick="Cadastro()">Registrar Transação</button>
+<hr/>
+<table class="table table-success table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Descrição</th>
+      <th scope="col">Tipo</th>
+      <th scope="col">#</th>
+      <th scope="col">#</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Teste</td>
+      <td>D</td>
+      <td><button type="button" class="btn btn-outline-warning">Editar</button></td>
+      <td><button type="button" class="btn btn-outline-danger">Excluir</button></td>
+    </tr>
+  </tbody>
+</table>
+
+<script>
+    function Cadastro()
+    {
+        window.location.href = "../Transacao/Cadastro"
+    }
+</script>
