@@ -3,8 +3,10 @@
 }
 
 <h1>@ViewData["Title"]</h1>
-
-<button type="button" class="btn btn-outline-success btn-lg" onclick="Cadastro()">Registrar Transação</button>
+<div>
+  <button type="button" class="btn btn-outline-success btn-lg" onclick="Cadastro()">Registrar Transação</button>
+  <button type="button" class="btn btn-outline-success btn-lg" onclick="AbrirRelatorio()">Relatório de transações</button>
+</div>
 <hr />
 <table class="table table-success table-striped">
   <thead>
@@ -51,5 +53,9 @@
 
   function Editar(id) {
     window.location.href = "../Transacao/Cadastro/" + id
+  }
+
+  function AbrirRelatorio() {
+    window.location.href = '../Transacao/Relatorio';
   }
 </script>

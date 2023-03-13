@@ -1,32 +1,35 @@
 @model TransacaoModel
 
+
 @{
     ViewData["Title"] = "Registro de Transação Financeira";
+    
 }
 
 <h2>@ViewData["Title"]</h2>
+
 
 <form asp-controller="Transacao" asp-action="Cadastro" method="post">
     <div class="container">
         <div class="mb-3">
             <label class="form-label">Data</label>
-            <input type="hidden" class="form-control" id="txtId" asp-for="Id" />
-            <input type="date" class="form-control" id="txtData" asp-for="Data" />
+            <input type="hidden" class="form-control" id="txtId" asp-for="Id"/>
+            <input type="date" class="form-control w-25 p-3" id="txtData" asp-for="Data" />
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Valor</label>
-            <input type="text" class="form-control" id="tctValor" asp-for="Valor" step="0.01" />
+            <label class="form-label ">Valor</label>
+            <input type="text" class="form-control w-25 p-3" id="tctValor" asp-for="Valor" step="0.01" />
         </div>
 
         <div class="mb-3">
             <label class="form-label">Item Plano de Conta</label>
-            @Html.DropDownListFor(m => m.PlanoContaId, Model.PlanoContas, new{@class="form-select"})
+            @Html.DropDownListFor(m => m.PlanoContaId, Model.PlanoContas, new{@class="form-select w-25 p-3"})
         </div>
 
         <div class="mb-3">
             <label class="form-label">Histórico</label>
-            <input type="text" class="form-control" id="txtHistorico" asp-for="Historico" />
+            <input type="text" class="form-control w-50 p-5" id="txtHistorico" asp-for="Historico" />
         </div>
 
         <div>

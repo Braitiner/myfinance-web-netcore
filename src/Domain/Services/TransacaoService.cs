@@ -82,5 +82,49 @@ namespace myfinance_web_netcore.Domain.Services
             _dbContext.Remove(item);
             _dbContext.SaveChanges();
         }
+
+         public RelatorioTransacoesModel PegarPorPeriodo(DateTime dataInicial, DateTime dataFinal)
+        {
+
+            var dbSet = _dbContext.Transacao
+                .Include(x => x.PlanoConta)
+                .Where(x => x.Data >= dataInicial.Date && x.Data <= dataFinal.Date);
+
+            List<TransacaoModel> ListaTransacao = new List<TransacaoModel>();
+
+            foreach (var item in dbSet)
+            {
+                ListaTransacao.Add(new TransacaoModel
+                {
+                    Id = item.Id,
+                    Data = item.Data,
+                    Historico = item.Historico,
+                    Valor = item.Valor,
+                    ItemPlanoConta =
+                        new PlanoContaModel
+                        {
+                            Id = item.PlanoConta.Id,
+                            Descricao = item.PlanoConta.Descricao,
+                            Tipo = item.PlanoConta.Tipo
+                        },
+                    PlanoContaId = (int)item.PlanoConta.Id,
+                    PlanoContaTipo = item.PlanoConta.Tipo
+                });
+            }
+
+            RelatorioTransacoesModel relatorio = new RelatorioTransacoesModel();
+            relatorio.DataInicio = dataInicial;
+            relatorio.DataFim = dataFinal;
+            relatorio.Transacao = ListaTransacao;
+            relatorio.TransacaoReceitas = ListaTransacao
+                .Where(x => x.PlanoContaTipo.Equals("R"))
+                .ToList()
+                .Count();
+            relatorio.TransacaoDespesas = ListaTransacao
+                .Where(x => x.PlanoContaTipo.Equals("D"))
+                .ToList()
+                .Count();
+            return relatorio;
+        }
     }
 }

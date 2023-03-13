@@ -60,6 +60,29 @@ namespace myfinance_web_netcore.Controllers
             _transacaoService.Excluir(id);
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        [Route("Relatorio")]
+        public IActionResult Relatorio()
+        {
+            RelatorioTransacoesModel model = new RelatorioTransacoesModel();
+            model.DataInicio = DateTime.Now;
+            model.DataFim = DateTime.Now;
+            return View(model);
+        }
+
+        [HttpPost]
+        [Route("Relatorio")]
+        public IActionResult Relatorio(RelatorioTransacoesModel model)
+        {
+            if (model.DataInicio != null || model.DataFim != null)
+            {
+                model = _transacaoService.PegarPorPeriodo(model.DataInicio, model.DataFim);
+            }
+            ViewBag.ReceitasBag = model.TransacaoReceitas.ToString();
+            ViewBag.DespesasBag = model.TransacaoDespesas.ToString();
+            return View(model);
+        }
         
 
     }

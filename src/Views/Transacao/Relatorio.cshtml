@@ -1,0 +1,75 @@
+@model RelatorioTransacoesModel
+@{
+    ViewData["Title"] = "Relatório de transações por período";
+
+    var receitas = ViewBag.ReceitasBag;
+    var despesas = ViewBag.DespesasBag;
+
+    string vDataInicio = string.Empty;
+    string vDataFim = string.Empty;
+
+    if (Model.DataInicio != null)
+    {
+        vDataInicio = DateTime.Parse(Model.DataInicio.ToString()).ToString("yyyy-MM-dd");
+    }
+
+    if (Model.DataFim != null)
+    {
+        vDataFim = DateTime.Parse(Model.DataFim.ToString()).ToString("yyyy-MM-dd");
+    }
+}
+
+<h3>@ViewData["Title"]</h3>
+
+<hr>
+
+<form asp-controller="Transacao" asp-action="Relatorio">
+    <div class="form-group" >
+        <label>Data inicial:</label>
+        <input type="date" class="form-control w-25 p-3" asp-for="DataInicio" value="@vDataInicio">
+        <span asp-validation-for="DataInicio" class="text-danger"></span>
+        <label>Data final:</label>
+        <input type="date" class="form-control w-25 p-3" asp-for="DataFim" value="@vDataFim">
+        <span asp-validation-for="DataInicio" class="text-danger"></span>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-outline-success btn-lg">Filtrar</button>
+    
+</form>
+
+<hr>
+
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Data da transação</th>
+        <th>Tipo (R/D)</th>
+        <th>Valor (R$)</th>
+        <th>Histórico</th>
+        <th>Plano de conta</th>
+    </tr>
+
+    @{
+        foreach (TransacaoModel transacao in Model.Transacao)
+        {
+            <tr>
+                <td>@transacao.Id</td>
+                <td>@transacao.Data</td>
+                <td>@transacao.ItemPlanoConta.Tipo</td>
+                <td>@transacao.Valor</td>
+                <td>@transacao.Historico</td>
+                <td>@transacao.ItemPlanoConta.Descricao</td>
+            </tr>
+        }
+    }
+
+</table>
+
+<div style="margin-left: auto; margin-right: auto; width: 300px; height: 100px;">
+
+    <canvas id="transactionsChart" width="400px" height="400px"></canvas>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.js"></script>
