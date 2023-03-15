@@ -64,7 +64,7 @@ Para acessar a aplicação no navegador copie o caminho indicado e cole no naveg
 
 <img src='/docs/registrarTransacoes.jpg'>
 
-###Implementação 
+### Implementação 
 
  aplicação **MyFinance** foi feita para realização dos controles de registro de  transações  financeiras para assim melhorar a  acuracidade dos pagamentos realizadosE melhor visualização dos relatórios financeiros através dos relatorios implantado no requisito RF103 
 
@@ -72,7 +72,7 @@ Para acessar a aplicação no navegador copie o caminho indicado e cole no naveg
 
 <img src='/docs/RF103.jpg'>
 
-####Resultado implmentação
+#### Resultado implmentação
 
 Foi necessario realizar a implementação de acordo com o requisito **RF103**
 
